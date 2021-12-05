@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AOC2021 {
     class Day04 : BaseDay {
@@ -12,7 +11,7 @@ namespace AOC2021 {
         public class Board {
             public int[,,] TileNumber;
             public int BoardSize;
-            public int WinningInput;
+            public int WinningInput = -1;
 
             public Board(int size) {
                 BoardSize = size;
@@ -36,20 +35,19 @@ namespace AOC2021 {
                 return string.Format("Last Input: {0} Unmarked Sum: {1} Value: {2}", WinningInput, SumUnmarkedNumbers, WinningInput * SumUnmarkedNumbers);
             }
         }
+
         public override void Solve() {
             string[] lines = GetInput();
 
             ParseInput(lines);
 
-            bool bingo = false;
-
             List<Board> completedBoards = new List<Board>();
 
-            while (numbersForDrawing.Count > 0 && !bingo) {
+            while (numbersForDrawing.Count > 0) {
                 int nextNumber = numbersForDrawing.Dequeue();
 
                 foreach (Board board in boards) {
-                    if (board.WinningInput != 0) { continue; }
+                    if (board.WinningInput != -1) { continue; }
                     if (BingoBoard(board, nextNumber)) {
                         completedBoards.Add(board);
                     }
