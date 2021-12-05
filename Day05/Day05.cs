@@ -5,7 +5,7 @@ using System.Text;
 namespace AOC2021 {
     class Day05 : BaseDay {
 
-        public override bool Debug => false;
+        public override bool Debug => true;
 
         public class Point {
             public int X = 0, Y = 0;
@@ -40,24 +40,8 @@ namespace AOC2021 {
                 }
             }
 
-            public bool Straight => Horizontal || Vertical;
+            public bool Straight => Start.X == End.X || Start.Y == End.Y;
             public bool Diagonal => Math.Abs(Start.X - End.X) == Math.Abs(Start.Y - End.Y);
-            public bool Vertical => Start.Y == End.Y;
-            public bool Horizontal => Start.X == End.X;
-
-            public bool PointOnLine(int X, int Y) {
-                bool xMatch = X >= MinX && X <= MaxX;
-                bool yMatch = Y >= MinY && Y <= MaxY;
-                bool diagonal = Math.Abs(Y - End.Y) == Math.Abs(X - End.X);
-
-                if (Straight) {
-                    return xMatch && yMatch;
-                } else if (Diagonal) {
-                    return diagonal && xMatch && yMatch;
-                } else {
-                    return false;
-                }
-            }
 
             public List<Point> GetAllPoints() {
                 int xDir = Math.Sign(Start.X - End.X);
@@ -84,7 +68,6 @@ namespace AOC2021 {
 
         public override void Solve() {
             string[] lines = GetInput();
-
 
             VentClouds = new List<Cloud>();
             foreach(string s in lines) {
@@ -117,6 +100,7 @@ namespace AOC2021 {
 
             if (Debug) {
                 StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
 
                 for (int y = 0; y <= maxY; y++) {
