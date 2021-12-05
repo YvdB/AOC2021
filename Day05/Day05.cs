@@ -60,14 +60,22 @@ namespace AOC2021 {
             }
 
             public List<Point> GetAllPoints() {
+                int xDir = Math.Sign(Start.X - End.X);
+                int yDir = Math.Sign(Start.Y - End.Y);
+
+                int nextX = Start.X;
+                int nextY = Start.Y;
+
                 List<Point> points = new List<Point>();
-                for (int x = MinX; x <= MaxX; x++) {
-                    for (int y = MinY; y <= MaxY; y++) {
-                        if(PointOnLine(x, y)) {
-                            points.Add(new Point(x, y));
-                        }
-                    }
+
+                while(nextX != End.X || nextY != End.Y) {
+                    points.Add(new Point(nextX, nextY));
+                    nextX-=xDir;
+                    nextY-=yDir;
                 }
+
+                points.Add(End);
+
                 return points;
             }
         }
@@ -76,6 +84,7 @@ namespace AOC2021 {
 
         public override void Solve() {
             string[] lines = GetInput();
+
 
             VentClouds = new List<Cloud>();
             foreach(string s in lines) {
@@ -125,7 +134,8 @@ namespace AOC2021 {
                 Log(stringBuilder.ToString());
             }
 
-            Log("Overlapping Points: " + overlapPointCount);
+            Log("Overlapping points: " + overlapPointCount);
+
         }
     }
 }
