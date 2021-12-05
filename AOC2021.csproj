@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDay.cs" />
+    <Compile Include="Day05\Day05.cs" />
     <Compile Include="Day04\Day04.cs" />
     <Compile Include="Day03\Day03.cs" />
     <Compile Include="Day02\Day02.cs" />
@@ -55,6 +56,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Day05\Example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Day05\Input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Day04\Example.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -7,12 +7,12 @@ namespace AOC2021 {
 
         static void Main() {
             Console.WriteLine("Welcome to the Advent of Code 2021!");
-            Console.Beep();
 
             days.Add(new Day01());
             days.Add(new Day02());
             days.Add(new Day03());
             days.Add(new Day04());
+            days.Add(new Day05());
 
             BaseDay debugDay = days.Find(x => x.Debug == true);
 
@@ -22,6 +22,7 @@ namespace AOC2021 {
                 days.ForEach(x => x.Solve());
             }
 
+            Console.Beep();
             Console.ReadKey();
         }
 
