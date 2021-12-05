@@ -14,19 +14,6 @@ namespace AOC2021 {
                 X = x;
                 Y = y;
             }
-
-            public override bool Equals(object other) {
-                Point otherPoint = (Point)other;
-                if(otherPoint == null) { 
-                    return false;
-                } else {
-                    return X == otherPoint.X && Y == otherPoint.Y;
-                }
-            }
-
-            public override int GetHashCode() {
-                return base.GetHashCode();
-            }
         }
 
         public class Cloud {
