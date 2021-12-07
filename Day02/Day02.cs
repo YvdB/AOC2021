@@ -7,11 +7,13 @@ namespace AOC2021 {
 
         public override bool Debug => false;
 
-        public override void Solve() {
+        protected override void Solve() {
             string[] lines = GetInput();
 
-            int depth = 0;
-            int horizontal = 0;
+            int depth1 = 0;
+            int depth2 = 0;
+            int horizontal1 = 0;
+            int horizontal2 = 0;
             int aim = 0;
 
             for (int i = 0; i < lines.Length; i++) {
@@ -22,22 +24,24 @@ namespace AOC2021 {
 
                 switch (currAction) {
                     case Dir.forward:
-                        horizontal += amount;
-                        depth += aim * amount;
+                        horizontal1 += amount;
+                        horizontal2 += amount;
+                        depth2 += aim * amount;
                         break;
                     case Dir.down:
+                        depth1 += amount;
                         aim += amount;
                         break;
                     case Dir.up:
+                        depth1 -= amount;
                         aim -= amount;
                         break;
                     default: break;
                 }
             }
 
-            Log("horizontal: " + horizontal);
-            Log("depth: " + depth);
-            Log("multiplied: " + depth * horizontal);
+            SolutionPart1 = depth1 * horizontal1;
+            SolutionPart2 = depth2 * horizontal2;
         }
     }
 }

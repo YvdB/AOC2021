@@ -34,9 +34,11 @@ namespace AOC2021 {
             public override string ToString() {
                 return string.Format("Last Input: {0} Unmarked Sum: {1} Value: {2}", WinningInput, SumUnmarkedNumbers, WinningInput * SumUnmarkedNumbers);
             }
+
+            public int Answer { get { return WinningInput * SumUnmarkedNumbers; } }
         }
 
-        public override void Solve() {
+        protected override void Solve() {
             string[] lines = GetInput();
 
             ParseInput(lines);
@@ -54,8 +56,8 @@ namespace AOC2021 {
                 }
             }
 
-            Log("First: " + completedBoards[0].ToString());
-            Log("Last: " + completedBoards[completedBoards.Count - 1].ToString());
+            SolutionPart1 = completedBoards[0].Answer;
+            SolutionPart2 = completedBoards[completedBoards.Count - 1].Answer;
         }
 
         private bool BingoBoard(Board board, int nextNumber) {
@@ -115,13 +117,13 @@ namespace AOC2021 {
                     newBoard = null;
                 } else {
                     if (newBoard == null) {
-                        List<int> rowNumbers = ParseBoardRow(lines[i]);
+                        List<int> rowNumbers = ParseBoardRow<int>(lines[i], ' ', int.TryParse);
 
                         newBoard = new Board(rowNumbers.Count);
                         newBoard.TileNumber = new int[newBoard.BoardSize, newBoard.BoardSize, 2];
 
                         for (int y = 0; y < newBoard.BoardSize; y++) {
-                            rowNumbers = ParseBoardRow(lines[i + y]);
+                            rowNumbers = ParseBoardRow<int>(lines[i+y], ' ', int.TryParse);
                             for (int x = 0; x < newBoard.BoardSize; x++) {
                                 newBoard.TileNumber[x, y, 0] = rowNumbers[x];
                             }
@@ -132,15 +134,17 @@ namespace AOC2021 {
             }
         }
 
-        private List<int> ParseBoardRow(string row) {
-            List<int> numbers = new List<int>();
-            string[] seperated = row.Split(' ');
+        public static List<T> ParseBoardRow<T>(string row, char seperator, TryParseHandler<T> handler) {
+            List<T> numbers = new List<T>();
+            string[] seperated = row.Split(seperator);
             for (int i = 0; i < seperated.Length; i++) {
-                if (int.TryParse(seperated[i], out int result)) {
+                if (handler(seperated[i], out T result)) {
                     numbers.Add(result);
                 }
             }
             return numbers;
         }
+
+        public delegate bool TryParseHandler<T>(string value, out T result);
     }
 }

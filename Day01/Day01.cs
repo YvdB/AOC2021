@@ -5,7 +5,7 @@ namespace AOC2021 {
 
         public override bool Debug => false;
 
-        public override void Solve() {
+        protected override void Solve() {
             string[] lines = GetInput();
 
             int[] inputInts = new int[lines.Length];
@@ -38,8 +38,8 @@ namespace AOC2021 {
                 prevSingle = currSingle;
             }
 
-            Log("single: " + higherSingle);
-            Log("group: " + higherGroup);
+            SolutionPart1 = higherSingle;
+            SolutionPart2 = higherGroup;
         }
 
         private static bool GroupValues(int[] values, int start, int amount, out int result) {

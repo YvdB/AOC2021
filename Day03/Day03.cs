@@ -5,7 +5,7 @@ namespace AOC2021 {
 
         public override bool Debug => false;
 
-        public override void Solve() {
+        protected override void Solve() {
             string[] lines = GetInput();
 
             int trimmedLength = lines[0].Trim().Length;
@@ -36,16 +36,12 @@ namespace AOC2021 {
             int gammaRate = Convert.ToInt32(gammaRateBinary, 2);
             int epsilonRate = Convert.ToInt32(epsilonRateBinary, 2);
 
-            Log("gammaRate: " + gammaRate);
-            Log("epsilonRate: " + epsilonRate);
-            Log("power consumption: " + gammaRate * epsilonRate);
+            SolutionPart1 = gammaRate * epsilonRate;
 
             int generatorRating = Convert.ToInt32(FindBinary(lines, false), 2);
             int scrubberRating = Convert.ToInt32(FindBinary(lines, true), 2);
 
-            Log("oxygen generator rating: " + generatorRating);
-            Log("CO2 scrubber rating: " + scrubberRating);
-            Log("life support rating: " + scrubberRating * generatorRating);
+            SolutionPart2 = scrubberRating * generatorRating;
         }
 
         private string FindBinary(string[] lines, bool lower) {

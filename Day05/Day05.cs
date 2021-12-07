@@ -5,7 +5,7 @@ using System.Text;
 namespace AOC2021 {
     class Day05 : BaseDay {
 
-        public override bool Debug => true;
+        public override bool Debug => false;
 
         public class Point {
             public int X = 0, Y = 0;
@@ -19,7 +19,7 @@ namespace AOC2021 {
         public class Cloud {
 
             public Point Start => points[0];
-            public Point End => points[points.Count-1];
+            public Point End => points[points.Count - 1];
 
             public int MinY => Math.Min(Start.Y, End.Y);
             public int MinX => Math.Min(Start.X, End.X);
@@ -31,7 +31,7 @@ namespace AOC2021 {
             public Cloud(string text) {
                 points = new List<Point>();
                 string[] split = text.Split(' ');
-                foreach(string s in split) {
+                foreach (string s in split) {
                     if (char.IsDigit(s[0])) {
                         string[] splitPoints = s.Split(',');
                         points.Add(new Point(int.Parse(splitPoints[0]), int.Parse(splitPoints[1])));
@@ -52,10 +52,10 @@ namespace AOC2021 {
 
                 List<Point> points = new List<Point>();
 
-                while(nextX != End.X || nextY != End.Y) {
+                while (nextX != End.X || nextY != End.Y) {
                     points.Add(new Point(nextX, nextY));
-                    nextX-=xDir;
-                    nextY-=yDir;
+                    nextX -= xDir;
+                    nextY -= yDir;
                 }
 
                 points.Add(End);
@@ -66,11 +66,11 @@ namespace AOC2021 {
 
         public List<Cloud> VentClouds;
 
-        public override void Solve() {
+        protected override void Solve() {
             string[] lines = GetInput();
 
             VentClouds = new List<Cloud>();
-            foreach(string s in lines) {
+            foreach (string s in lines) {
                 VentClouds.Add(new Cloud(s));
             }
 
@@ -82,17 +82,32 @@ namespace AOC2021 {
                 maxY = Math.Max(maxY, x.MaxY);
             });
 
-            int[,] grid = new int[maxX+1, maxY+1];
-            int overlapPointCount = 0;
+            int[,] grid = new int[maxX + 1, maxY + 1];
+            int overlapStraight = 0;
 
             VentClouds.ForEach(cloud => {
-                if (cloud.Straight || cloud.Diagonal) {
+                if (cloud.Straight) {
                     List<Point> points = cloud.GetAllPoints();
                     foreach (Point p in points) {
                         grid[p.X, p.Y]++;
 
-                        if(grid[p.X, p.Y] == 2) {
-                            overlapPointCount++;
+                        if (grid[p.X, p.Y] == 2) {
+                            overlapStraight++;
+                        }
+                    }
+                }
+            }); 
+            
+            int overlapDiagonal = 0;
+
+            VentClouds.ForEach(cloud => {
+                if (cloud.Diagonal) {
+                    List<Point> points = cloud.GetAllPoints();
+                    foreach (Point p in points) {
+                        grid[p.X, p.Y]++;
+
+                        if (grid[p.X, p.Y] == 2) {
+                            overlapDiagonal++;
                         }
                     }
                 }
@@ -118,7 +133,8 @@ namespace AOC2021 {
                 Log(stringBuilder.ToString());
             }
 
-            Log("Overlapping points: " + overlapPointCount);
+            SolutionPart1 = overlapStraight;
+            SolutionPart2 = overlapStraight + overlapDiagonal;
 
         }
     }
