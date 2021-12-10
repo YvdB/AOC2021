@@ -7,8 +7,8 @@ namespace AOC2021 {
 
         public virtual bool Debug { get; protected set; }
 
-        public virtual int SolutionPart1 { get; protected set; }
-        public virtual int SolutionPart2 { get; protected set; }
+        public virtual long SolutionPart1 { get; protected set; }
+        public virtual long SolutionPart2 { get; protected set; }
 
         private double startTicks;
         private string currLabel;
