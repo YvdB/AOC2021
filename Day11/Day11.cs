@@ -76,14 +76,13 @@ namespace AOC2021 {
                         Console.ForegroundColor = fg;
                     }
                     Console.Write(energy > 9 ? "*" : energy.ToString());
-
                 }
                 Console.WriteLine();
             }
 
             Console.BackgroundColor = bg;
             Console.ForegroundColor = fg;
-            System.Threading.Thread.Sleep(8);
+            System.Threading.Thread.Sleep(12);
         }
 
         private void IncreaseEnergy() {
