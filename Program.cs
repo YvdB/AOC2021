@@ -15,9 +15,10 @@ namespace AOC2021 {
             days.Add(new Day04());
             days.Add(new Day05());
             days.Add(new Day06());
-
             days.Add(new Day07());
-
+            days.Add(new Day08());
+            days.Add(new Day09());
+            days.Add(new Day10());
             days.Add(new Day11());
 
 
