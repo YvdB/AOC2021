@@ -53,8 +53,8 @@ namespace AOC2021 {
                 step++;
             }
 
-            SolutionPart1 = flashesAfter100Steps != -1 ? flashesAfter100Steps : totalFlashes;
-            SolutionPart2 = synchronizedFlashStep;
+            SetAnswerPart1(flashesAfter100Steps != -1 ? flashesAfter100Steps : totalFlashes);
+            SetAnswerPart2(synchronizedFlashStep);
         }
 
         private void LogField(int step, string state) {

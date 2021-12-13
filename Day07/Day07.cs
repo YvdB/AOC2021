@@ -17,8 +17,8 @@ namespace AOC2021 {
                 max = Math.Max(max, x);
             });
 
-            SolutionPart1 = CalculateFuel(crabs, min, max, false);
-            SolutionPart2 = CalculateFuel(crabs, min, max, true);
+            SetAnswerPart1(CalculateFuel(crabs, min, max, false));
+            SetAnswerPart2(CalculateFuel(crabs, min, max, true));
         }
 
         private int CalculateFuel(List<int> crabs, int min, int max, bool part2) {

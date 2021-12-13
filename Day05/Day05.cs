@@ -17,7 +17,7 @@ namespace AOC2021 {
             public int MaxY => Math.Max(Start.Y, End.Y);
             public int MaxX => Math.Max(Start.X, End.X);
 
-            private List<Vector2Int> points;
+            private readonly List<Vector2Int> points;
 
             public Cloud(string text) {
                 points = new List<Vector2Int>();
@@ -124,8 +124,8 @@ namespace AOC2021 {
                 Log(stringBuilder.ToString());
             }
 
-            SolutionPart1 = overlapStraight;
-            SolutionPart2 = overlapStraight + overlapDiagonal;
+            SetAnswerPart1(overlapStraight);
+            SetAnswerPart2(overlapStraight + overlapDiagonal);
 
         }
     }

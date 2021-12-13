@@ -11,8 +11,8 @@ namespace AOC2021 {
         protected override void Solve() {
             originalFish = Day04.ParseBoardRow<int>(GetInput()[0], ',', int.TryParse);
 
-            SolutionPart1 = GetFishPopAfterDays(originalFish, 80);
-            SolutionPart2 = GetFishPopAfterDaysBetter(originalFish, 256);
+            SetAnswerPart1(GetFishPopAfterDays(originalFish, 80));
+            SetAnswerPart2(GetFishPopAfterDaysBetter(originalFish, 256));
         }
 
         /// <summary>

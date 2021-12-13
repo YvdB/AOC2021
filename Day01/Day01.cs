@@ -38,8 +38,8 @@ namespace AOC2021 {
                 prevSingle = currSingle;
             }
 
-            SolutionPart1 = higherSingle;
-            SolutionPart2 = higherGroup;
+            SetAnswerPart1(higherSingle);
+            SetAnswerPart2(higherGroup);
         }
 
         private static bool GroupValues(int[] values, int start, int amount, out int result) {

@@ -56,8 +56,8 @@ namespace AOC2021 {
                 }
             }
 
-            SolutionPart1 = completedBoards[0].Answer;
-            SolutionPart2 = completedBoards[completedBoards.Count - 1].Answer;
+            SetAnswerPart1(completedBoards[0].Answer);
+            SetAnswerPart2(completedBoards[completedBoards.Count - 1].Answer);
         }
 
         private bool BingoBoard(Board board, int nextNumber) {

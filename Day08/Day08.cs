@@ -19,8 +19,7 @@ namespace AOC2021 {
         readonly int[] nine = new int[7]  { 1, 1, 1, 1, 0, 1, 1 };
 
         readonly List<int[]> allDigitStates = new List<int[]>();
-
-        Dictionary<string, int> defaultDigits = new Dictionary<string, int>() {
+        readonly Dictionary<string, int> defaultDigits = new Dictionary<string, int>() {
             { "cf", 1 },
             { "acdeg", 2 },
             { "acdfg", 3 },
@@ -68,8 +67,8 @@ namespace AOC2021 {
                 addedSolutions += int.Parse(decoded);
             }
 
-            SolutionPart1 = knownLengthCount;
-            SolutionPart2 = addedSolutions;
+            SetAnswerPart1(knownLengthCount);
+            SetAnswerPart2(addedSolutions);
         }
 
         /// <summary>

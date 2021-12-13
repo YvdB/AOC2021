@@ -40,8 +40,8 @@ namespace AOC2021 {
                 }
             }
 
-            SolutionPart1 = depth1 * horizontal1;
-            SolutionPart2 = depth2 * horizontal2;
+            SetAnswerPart1(depth1 * horizontal1);
+            SetAnswerPart2(depth2 * horizontal2);
         }
     }
 }

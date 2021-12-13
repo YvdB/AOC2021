@@ -36,12 +36,12 @@ namespace AOC2021 {
             int gammaRate = Convert.ToInt32(gammaRateBinary, 2);
             int epsilonRate = Convert.ToInt32(epsilonRateBinary, 2);
 
-            SolutionPart1 = gammaRate * epsilonRate;
+            SetAnswerPart1(gammaRate* epsilonRate);
 
             int generatorRating = Convert.ToInt32(FindBinary(lines, false), 2);
             int scrubberRating = Convert.ToInt32(FindBinary(lines, true), 2);
 
-            SolutionPart2 = scrubberRating * generatorRating;
+            SetAnswerPart2(scrubberRating * generatorRating);
         }
 
         private string FindBinary(string[] lines, bool lower) {
