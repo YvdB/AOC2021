@@ -7,34 +7,25 @@ namespace AOC2021 {
 
         public override bool Debug => false;
 
-        public class Point {
-            public int X = 0, Y = 0;
-
-            public Point(int x, int y) {
-                X = x;
-                Y = y;
-            }
-        }
-
         public class Cloud {
 
-            public Point Start => points[0];
-            public Point End => points[points.Count - 1];
+            public Vector2Int Start => points[0];
+            public Vector2Int End => points[points.Count - 1];
 
             public int MinY => Math.Min(Start.Y, End.Y);
             public int MinX => Math.Min(Start.X, End.X);
             public int MaxY => Math.Max(Start.Y, End.Y);
             public int MaxX => Math.Max(Start.X, End.X);
 
-            private List<Point> points;
+            private List<Vector2Int> points;
 
             public Cloud(string text) {
-                points = new List<Point>();
+                points = new List<Vector2Int>();
                 string[] split = text.Split(' ');
                 foreach (string s in split) {
                     if (char.IsDigit(s[0])) {
                         string[] splitPoints = s.Split(',');
-                        points.Add(new Point(int.Parse(splitPoints[0]), int.Parse(splitPoints[1])));
+                        points.Add(new Vector2Int(int.Parse(splitPoints[0]), int.Parse(splitPoints[1])));
                     }
 
                 }
@@ -43,17 +34,17 @@ namespace AOC2021 {
             public bool Straight => Start.X == End.X || Start.Y == End.Y;
             public bool Diagonal => Math.Abs(Start.X - End.X) == Math.Abs(Start.Y - End.Y);
 
-            public List<Point> GetAllPoints() {
+            public List<Vector2Int> GetAllPoints() {
                 int xDir = Math.Sign(Start.X - End.X);
                 int yDir = Math.Sign(Start.Y - End.Y);
 
                 int nextX = Start.X;
                 int nextY = Start.Y;
 
-                List<Point> points = new List<Point>();
+                List<Vector2Int> points = new List<Vector2Int>();
 
                 while (nextX != End.X || nextY != End.Y) {
-                    points.Add(new Point(nextX, nextY));
+                    points.Add(new Vector2Int(nextX, nextY));
                     nextX -= xDir;
                     nextY -= yDir;
                 }
@@ -87,8 +78,8 @@ namespace AOC2021 {
 
             VentClouds.ForEach(cloud => {
                 if (cloud.Straight) {
-                    List<Point> points = cloud.GetAllPoints();
-                    foreach (Point p in points) {
+                    List<Vector2Int> points = cloud.GetAllPoints();
+                    foreach (Vector2Int p in points) {
                         grid[p.X, p.Y]++;
 
                         if (grid[p.X, p.Y] == 2) {
@@ -102,8 +93,8 @@ namespace AOC2021 {
 
             VentClouds.ForEach(cloud => {
                 if (cloud.Diagonal) {
-                    List<Point> points = cloud.GetAllPoints();
-                    foreach (Point p in points) {
+                    List<Vector2Int> points = cloud.GetAllPoints();
+                    foreach (Vector2Int p in points) {
                         grid[p.X, p.Y]++;
 
                         if (grid[p.X, p.Y] == 2) {
