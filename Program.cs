@@ -21,6 +21,7 @@ namespace AOC2021 {
             days.Add(new Day10());
             days.Add(new Day11());
             days.Add(new Day13());
+            days.Add(new Day14());
 
 
             BaseDay debugDay = days.Find(x => x.Debug == true);
